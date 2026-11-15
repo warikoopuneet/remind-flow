@@ -10,6 +10,7 @@ build/
 app/build/
 *.apk
 *.aab
+.kotlin/
 
 # Local SDK and environment configurations
 local.properties
@@ -23,6 +24,14 @@ local.properties
 captures/
 .externalNativeBuild
 .cxx/
+
+# Compiled class file
+*.class
+
+# Log files & crash dumps
+*.log
+hs_err_pid*
+replay_pid*
 
 # OS specific files
 .DS_Store

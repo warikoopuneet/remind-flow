@@ -4,7 +4,13 @@ set -e
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$DIR"
 
-export JAVA_HOME="/usr/lib/jvm/java-21-amazon-corretto"
+if [ -z "$JAVA_HOME" ]; then
+    if [ -d "/usr/lib/jvm/java-25-amazon-corretto" ]; then
+        export JAVA_HOME="/usr/lib/jvm/java-25-amazon-corretto"
+    elif [ -d "/usr/lib/jvm/java-21-amazon-corretto" ]; then
+        export JAVA_HOME="/usr/lib/jvm/java-21-amazon-corretto"
+    fi
+fi
 
 # 1. Resolve Keystore Passwords from CLI arguments or Environment Variables
 # CLI Argument 1: Store Password (or fallback to env variable REMINDFLOW_STORE_PASSWORD)

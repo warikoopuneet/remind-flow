@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RemindFlow - Interactive Android UI Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-viewport-wrapper">
+    <!-- Mobile Device Mockup Container -->
+    <div class="mobile-frame">
+      <!-- Android Status Bar -->
+      <div class="status-bar">
+        <span class="status-time" id="statusClock">09:41</span>
+        <div class="status-icons">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l.64-.64C7.93 20.26 9.88 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+        </div>
+      </div>
+
+      <!-- Main Navigation Screens Container -->
+      <div class="screens-container">
+        
+        <!-- ==================== SCREEN 1: DASHBOARD ==================== -->
+        <section id="screenDashboard" class="screen active">
+          <!-- Top App Header -->
+          <div class="app-header">
+            <div class="header-titles">
+              <div class="brand-row">
+                <span class="brand-text">Remind<span class="brand-accent">Flow</span></span>
+              </div>
+              <p class="header-date" id="headerDate">Sunday, November 1</p>
+            </div>
+            <div class="header-actions">
+              <button class="icon-btn notif-header-btn" onclick="switchScreen('screenNotifications')" title="Notifications & Alarms">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                <span class="notif-badge-dot"></span>
+              </button>
+              <button class="icon-btn" onclick="switchScreen('screenInventory')" title="Supplies & Inventory">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>
+              </button>
+              <button class="icon-btn" onclick="switchScreen('screenAnalytics')" title="Compliance Stats">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+              </button>
+              <button class="icon-btn" onclick="switchScreen('screenSettings')" title="Settings">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Horizontal 7-Day Date Picker Strip -->
+          <div class="calendar-strip-container">
+            <div class="calendar-strip" id="calendarStrip">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Progress Ring Card -->
+          <div class="progress-banner-card">
+            <div class="progress-info">
+              <h3>Today's Completion</h3>
+              <p id="progressSubtext">4 of 5 routines completed</p>
+            </div>
+            <div class="circular-progress-wrap">
+              <svg class="progress-ring" width="68" height="68">
+                <circle class="ring-bg" stroke="rgba(255,255,255,0.08)" stroke-width="6" fill="transparent" r="28" cx="34" cy="34"/>
+                <circle id="progressRingBar" class="ring-fill" stroke="#6366F1" stroke-width="6" stroke-linecap="round" fill="transparent" r="28" cx="34" cy="34"/>
+              </svg>
+              <span id="progressPercentage" class="ring-number">80%</span>
+            </div>
+          </div>
+
+          <!-- 4 Time Quadrants Section -->
+          <div class="quadrants-list" id="quadrantsContainer">
+            <!-- Morning Quadrant -->
+            <div class="quadrant-card morning" id="quadrantMorning">
+              <div class="quadrant-header" onclick="toggleQuadrant('quadrantMorning')">
+                <div class="quadrant-title-group">
+                  <div class="quadrant-icon-box morning">
+                    <span>🌅</span>
+                  </div>
+                  <div>
+                    <h4 class="quadrant-name">Morning</h4>
+                    <span class="quadrant-time">06:00 AM – 12:00 PM</span>
+                  </div>
+                </div>
+                <div class="quadrant-badge" id="badgeMorning">2 of 2 Done</div>
+              </div>
+              <div class="quadrant-items" id="itemsMorning">
+                <!-- Morning items populated via JS -->
+              </div>
+            </div>
+
+            <!-- Afternoon Quadrant -->
+            <div class="quadrant-card afternoon" id="quadrantAfternoon">
+              <div class="quadrant-header" onclick="toggleQuadrant('quadrantAfternoon')">
+                <div class="quadrant-title-group">
+                  <div class="quadrant-icon-box afternoon">
+                    <span>☀️</span>
+                  </div>
+                  <div>
+                    <h4 class="quadrant-name">Afternoon</h4>
+                    <span class="quadrant-time">12:00 PM – 06:00 PM</span>
+                  </div>
+                </div>
+                <div class="quadrant-badge" id="badgeAfternoon">1 of 2 Done</div>
+              </div>
+              <div class="quadrant-items" id="itemsAfternoon">
+                <!-- Afternoon items -->
+              </div>
+            </div>
+
+            <!-- Evening Quadrant -->
+            <div class="quadrant-card evening" id="quadrantEvening">
+              <div class="quadrant-header" onclick="toggleQuadrant('quadrantEvening')">
+                <div class="quadrant-title-group">
+                  <div class="quadrant-icon-box evening">
+                    <span>🌆</span>
+                  </div>
+                  <div>
+                    <h4 class="quadrant-name">Evening</h4>
+                    <span class="quadrant-time">06:00 PM – 10:00 PM</span>
+                  </div>
+                </div>
+                <div class="quadrant-badge" id="badgeEvening">1 of 1 Done</div>
+              </div>
+              <div class="quadrant-items" id="itemsEvening">
+                <!-- Evening items -->
+              </div>
+            </div>
+
+            <!-- Night Quadrant -->
+            <div class="quadrant-card night" id="quadrantNight">
+              <div class="quadrant-header" onclick="toggleQuadrant('quadrantNight')">
+                <div class="quadrant-title-group">
+                  <div class="quadrant-icon-box night">
+                    <span>🌙</span>
+                  </div>
+                  <div>
+                    <h4 class="quadrant-name">Night</h4>
+                    <span class="quadrant-time">10:00 PM – 06:00 AM</span>
+                  </div>
+                </div>
+                <div class="quadrant-badge" id="badgeNight">Pending</div>
+              </div>
+              <div class="quadrant-items" id="itemsNight">
+                <!-- Night items -->
+              </div>
+            </div>
+          </div>
+
+          <div style="height: 90px;"></div>
+        </section>
+
+        <!-- ==================== SCREEN 2: ADD / EDIT REMINDER ==================== -->
+        <section id="screenAddEdit" class="screen">
+          <div class="sub-header">
+            <button class="back-btn" onclick="switchScreen('screenDashboard')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <h2 id="formTitle">New Reminder</h2>
+            <button class="save-icon-btn" onclick="saveReminderForm()">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </button>
+          </div>
+
+          <div class="form-scrollable">
+            <!-- Title & Notes -->
+            <div class="form-group">
+              <label>Reminder Title</label>
+              <input type="text" id="inputTitle" placeholder="e.g. Amoxicillin 500mg, Standup Meeting, Jog" class="input-text">
+            </div>
+
+            <div class="form-group">
+              <label>Notes / Instructions (Optional)</label>
+              <input type="text" id="inputNotes" placeholder="e.g. Take with full glass of water, Room 4B" class="input-text">
+            </div>
+
+            <!-- Category Selector (Medicine vs General Types) -->
+            <div class="form-group">
+              <div class="category-header-wrap">
+                <label>Category</label>
+                <span class="help-hint">Medicines enable stock counts</span>
+              </div>
+              <div class="category-chips-row">
+                <button type="button" class="cat-chip" data-cat="GENERAL" onclick="selectCategory('GENERAL')">
+                  <span>📌 General Reminder</span>
+                </button>
+                <button type="button" class="cat-chip active" data-cat="HEALTH" onclick="selectCategory('HEALTH')">
+                  <span>💊 Health & Meds</span>
+                </button>
+                <button type="button" class="cat-chip" data-cat="FITNESS" onclick="selectCategory('FITNESS')">
+                  <span>🏋️ Fitness</span>
+                </button>
+                <button type="button" class="cat-chip" data-cat="WORK" onclick="selectCategory('WORK')">
+                  <span>💻 Work & Tasks</span>
+                </button>
+                <button type="button" class="cat-chip" data-cat="HABITS" onclick="selectCategory('HABITS')">
+                  <span>📖 Habits</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Scheduled Time & Quadrant -->
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Scheduled Time</label>
+                <div class="time-picker-box">
+                  <input type="time" id="inputTime" value="08:00" onchange="autoAssignQuadrant(this.value)" class="time-input">
+                </div>
+              </div>
+
+              <div class="form-group flex-1">
+                <label>Quadrant <span style="font-size: 11px; color: var(--accent-cyan); font-weight: normal;">(Auto-derived from time)</span></label>
+                <div class="quadrant-select-box" id="displayQuadrantBadge">
+                  <span>🌅 Morning</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ================= REMINDER MODE SELECTOR ================= -->
+            <div class="form-group">
+              <label>Reminder Mode</label>
+              <div class="mode-segmented-control">
+                <button type="button" class="mode-segment-btn active" id="btnModeRecurring" onclick="setScheduleMode('RECURRING')">
+                  <span>🔁 Recurring</span>
+                </button>
+                <button type="button" class="mode-segment-btn" id="btnModeSingle" onclick="setScheduleMode('SINGLE')">
+                  <span>📅 Single (1-Time)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Single (1-Time) Mode Container -->
+            <div id="singleModeSection" class="mode-details-box" style="display: none;">
+              <div class="form-group">
+                <label>Reminder Date</label>
+                <input type="date" id="inputSingleDate" class="input-text">
+                <span class="field-hint">Fires only once on this specific date, then marks completed</span>
+              </div>
+            </div>
+
+            <!-- Recurring Mode Container -->
+            <div id="recurringModeSection" class="mode-details-box">
+              <div class="form-group">
+                <div class="repeat-header-row">
+                  <label>Recurring Days</label>
+                  <div class="quick-days-chips">
+                    <button type="button" class="quick-chip active" id="chipDaily" onclick="setQuickDays('DAILY')">Daily</button>
+                    <button type="button" class="quick-chip" id="chipWeekdays" onclick="setQuickDays('WEEKDAYS')">Mon–Fri</button>
+                    <button type="button" class="quick-chip" id="chipWeekends" onclick="setQuickDays('WEEKENDS')">Sat–Sun</button>
+                  </div>
+                </div>
+                <div class="days-row" id="recurringDaysRow">
+                  <button type="button" class="day-circle active" data-day="1" onclick="toggleDay(this)">M</button>
+                  <button type="button" class="day-circle active" data-day="2" onclick="toggleDay(this)">T</button>
+                  <button type="button" class="day-circle active" data-day="3" onclick="toggleDay(this)">W</button>
+                  <button type="button" class="day-circle active" data-day="4" onclick="toggleDay(this)">T</button>
+                  <button type="button" class="day-circle active" data-day="5" onclick="toggleDay(this)">F</button>
+                  <button type="button" class="day-circle active" data-day="6" onclick="toggleDay(this)">S</button>
+                  <button type="button" class="day-circle active" data-day="7" onclick="toggleDay(this)">S</button>
+                </div>
+                <div class="selected-days-label" id="selectedDaysLabel">Everyday (Mon, Tue, Wed, Thu, Fri, Sat, Sun)</div>
+              </div>
+
+              <!-- Optional End Date Card -->
+              <div class="end-date-card">
+                <div class="card-header-toggle">
+                  <div>
+                    <strong style="font-size:13px; color:var(--text-main);">Set End Date</strong>
+                    <p style="font-size:11px; color:var(--text-muted); margin-top:2px;">Stop repeating after this date</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="checkHasEndDate" onchange="toggleEndDateField(this.checked)">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div id="endDateInputWrap" style="display: none; margin-top: 10px;">
+                  <label style="font-size: 11px; color: var(--text-muted);">End Date</label>
+                  <input type="date" id="inputEndDate" class="input-text">
+                </div>
+              </div>
+            </div>
+
+            <!-- ================= CONDITIONAL INVENTORY SECTION ================= -->
+            <!-- Only shown when Health & Meds is selected -->
+            <div id="medicineStockSection" class="medicine-stock-card">
+              <div class="card-header-toggle">
+                <div>
+                  <h4 class="stock-title">💊 Medicine Stock & Supplies</h4>
+                  <p class="stock-desc">Auto-decrements remaining pills and warns on low stock</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="checkTrackStock" checked onchange="toggleStockFields(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div id="stockInputFields" class="stock-fields-wrap">
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label>Current Stock</label>
+                    <input type="number" id="inputCurrentStock" value="28" class="input-text">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label>Dose per Take</label>
+                    <input type="number" id="inputDosePerTake" value="1" class="input-text">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label>Refill Alert Under</label>
+                    <input type="number" id="inputLowThreshold" value="5" class="input-text">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label>Unit</label>
+                    <input type="text" id="inputUnit" value="tablets" class="input-text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Persistent Alarm Toggle -->
+            <div class="urgent-card">
+              <div>
+                <h4>🔔 Persistent High-Priority Alarm</h4>
+                <p>Audible sound that bypasses silent mode for critical routines</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="checkUrgent">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" class="btn-primary" onclick="saveReminderForm()">Save Reminder</button>
+
+            <div style="height: 60px;"></div>
+          </div>
+        </section>
+
+        <!-- ==================== SCREEN 3: INVENTORY ==================== -->
+        <section id="screenInventory" class="screen">
+          <div class="sub-header">
+            <button class="back-btn" onclick="switchScreen('screenDashboard')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <h2>Supplies & Refills</h2>
+            <div style="width: 32px;"></div>
+          </div>
+
+          <div class="inventory-scrollable">
+            <div class="inventory-summary-cards">
+              <div class="summary-box">
+                <span class="summary-label">Tracked Medicines</span>
+                <span class="summary-val" id="invTotalCount">2 Items</span>
+              </div>
+              <div class="summary-box warning">
+                <span class="summary-label">Low Stock Alerts</span>
+                <span class="summary-val" id="invLowCount">1 Alert</span>
+              </div>
+            </div>
+
+            <h3 class="section-heading">Current Medicine Supplies</h3>
+
+            <div class="supply-list" id="inventoryList">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div style="height: 60px;"></div>
+          </div>
+        </section>
+
+        <!-- ==================== SCREEN 4: ANALYTICS ==================== -->
+        <section id="screenAnalytics" class="screen">
+          <div class="sub-header">
+            <button class="back-btn" onclick="switchScreen('screenDashboard')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <h2>Routine Compliance</h2>
+            <div style="width: 32px;"></div>
+          </div>
+
+          <div class="analytics-scrollable">
+            <div class="analytics-metrics-row">
+              <div class="metric-card emerald">
+                <span class="metric-icon">✓</span>
+                <span class="metric-num">92%</span>
+                <span class="metric-label">Weekly Adherence</span>
+              </div>
+              <div class="metric-card amber">
+                <span class="metric-icon">🔥</span>
+                <span class="metric-num">7 Days</span>
+                <span class="metric-label">Active Streak</span>
+              </div>
+            </div>
+
+            <!-- 7-Day Chart -->
+            <div class="chart-card">
+              <h3>7-Day Routine Compliance</h3>
+              <div class="bar-chart-row">
+                <div class="chart-col"><div class="bar h-90"></div><span>M</span></div>
+                <div class="chart-col"><div class="bar h-100"></div><span>T</span></div>
+                <div class="chart-col"><div class="bar h-80"></div><span>W</span></div>
+                <div class="chart-col"><div class="bar h-100"></div><span>T</span></div>
+                <div class="chart-col"><div class="bar h-95"></div><span>F</span></div>
+                <div class="chart-col"><div class="bar h-100"></div><span>S</span></div>
+                <div class="chart-col active"><div class="bar h-80"></div><span>S</span></div>
+              </div>
+            </div>
+
+            <!-- Activity Log -->
+            <h3 class="section-heading">Recent Action Log</h3>
+            <div class="activity-log-list" id="activityLogList">
+              <div class="log-item">
+                <span class="log-badge done">✓</span>
+                <div class="log-details">
+                  <strong>Multivitamin & Omega 3</strong>
+                  <p>Taken on time • 08:00 AM</p>
+                </div>
+              </div>
+              <div class="log-item">
+                <span class="log-badge done">✓</span>
+                <div class="log-details">
+                  <strong>Morning Hydration</strong>
+                  <p>Completed 500ml • 09:30 AM</p>
+                </div>
+              </div>
+              <div class="log-item">
+                <span class="log-badge snooze">⏱</span>
+                <div class="log-details">
+                  <strong>Afternoon Focus Walk</strong>
+                  <p>Snoozed for 30 minutes • 02:15 PM</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="height: 60px;"></div>
+          </div>
+        </section>
+
+        <!-- ==================== SCREEN: NOTIFICATIONS & ALARMS ==================== -->
+        <section id="screenNotifications" class="screen">
+          <div class="sub-header">
+            <button class="back-btn" onclick="switchScreen('screenDashboard')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <h2>Notifications & Alarms</h2>
+            <div style="width: 32px;"></div>
+          </div>
+
+          <div class="notifications-scrollable">
+            <!-- Active Due Notification (Android Heads-up Simulation) -->
+            <div class="notif-section-title">
+              <span class="pulse-indicator"></span>
+              <h3>Active Alert (Due Now)</h3>
+            </div>
+
+            <div class="android-notification-preview" id="activeNotificationCard">
+              <div class="notif-app-bar">
+                <div class="notif-app-info">
+                  <div class="notif-mini-icon">⏰</div>
+                  <span class="notif-app-name">RemindFlow</span>
+                  <span class="notif-dot">•</span>
+                  <span class="notif-timestamp">Just now</span>
+                </div>
+                <span class="notif-badge-pill">High Priority</span>
+              </div>
+
+              <div class="notif-content-row">
+                <div class="notif-text-wrap">
+                  <h4 class="notif-head-title" id="liveNotifTitle">Omega-3 & Magnesium</h4>
+                  <p class="notif-head-desc" id="liveNotifDesc">Take 2 capsules with dinner • Evening Quadrant</p>
+                  <div class="notif-tag-row">
+                    <span class="notif-stock-warning">⚠️ Low Stock: 4 left</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actionable Buttons -->
+              <div class="notif-action-buttons-row">
+                <button class="btn-notif-action done" onclick="handleNotificationAction('DONE')">
+                  ✓ Done / Take
+                </button>
+                <button class="btn-notif-action snooze" onclick="handleNotificationAction('SNOOZE')">
+                  ⏱ Snooze 15m
+                </button>
+                <button class="btn-notif-action skip" onclick="handleNotificationAction('SKIP')">
+                  ✕ Skip
+                </button>
+              </div>
+            </div>
+
+            <!-- Full-Screen Alarm Modal Simulation Trigger -->
+            <div class="fullscreen-alarm-card">
+              <div class="fullscreen-alarm-info">
+                <h4>🚨 Full-Screen Alarm Mode</h4>
+                <p>Preview persistent ringing screen for critical routines & medicines</p>
+              </div>
+              <button class="btn-sm-alarm" onclick="openFullscreenAlarm()">Preview Alarm</button>
+            </div>
+
+            <!-- Notification Channels & Sound Config -->
+            <h3 class="section-heading" style="margin-top:20px;">Notification Channels</h3>
+            
+            <div class="channel-config-card">
+              <div class="channel-row">
+                <div class="channel-info">
+                  <strong>Standard Routine Chimes</strong>
+                  <p>Heads-up banner with audio chime</p>
+                </div>
+                <span class="channel-badge">Sound & Vibrate</span>
+              </div>
+
+              <div class="channel-row">
+                <div class="channel-info">
+                  <strong>Urgent Medication Alarms</strong>
+                  <p>Overrides silent/DND mode until taken</p>
+                </div>
+                <span class="channel-badge urgent">High Urgency</span>
+              </div>
+            </div>
+
+            <!-- Sound Preferences -->
+            <h3 class="section-heading" style="margin-top:16px;">Sound & Tone</h3>
+            <div class="sound-options-row">
+              <button class="sound-pill active" onclick="selectSound(this)">🔔 Gentle Chime</button>
+              <button class="sound-pill" onclick="selectSound(this)">🎵 Marimba</button>
+              <button class="sound-pill" onclick="selectSound(this)">⚡ Radar Alert</button>
+              <button class="sound-pill" onclick="selectSound(this)">🧘 Zen Bowl</button>
+            </div>
+
+            <!-- Recent Notifications History -->
+            <h3 class="section-heading" style="margin-top:20px;">Recent Notification Log</h3>
+            <div class="notif-history-list" id="notifHistoryList">
+              <div class="history-item">
+                <div class="history-icon done">✓</div>
+                <div class="history-details">
+                  <strong>Multivitamin & Zinc</strong>
+                  <p>Action: [✓ Done] taken from notification bar • 08:00 AM</p>
+                </div>
+              </div>
+              <div class="history-item">
+                <div class="history-icon done">✓</div>
+                <div class="history-details">
+                  <strong>Morning Hydration Goal</strong>
+                  <p>Action: [✓ Done] completed • 09:30 AM</p>
+                </div>
+              </div>
+              <div class="history-item">
+                <div class="history-icon snooze">⏱</div>
+                <div class="history-details">
+                  <strong>Afternoon Focus Walk</strong>
+                  <p>Action: [⏱ Snooze 15m] pushed • 02:15 PM</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="height: 60px;"></div>
+          </div>
+        </section>
+
+        <!-- ==================== SCREEN 5: SETTINGS ==================== -->
+        <section id="screenSettings" class="screen">
+          <div class="sub-header">
+            <button class="back-btn" onclick="switchScreen('screenDashboard')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <h2>Settings & Customization</h2>
+            <div style="width: 32px;"></div>
+          </div>
+
+          <div class="settings-scrollable">
+            <h3 class="section-heading">Daily Time Quadrants</h3>
+            <p class="section-desc">Times automatically group into these 4 windows:</p>
+
+            <div class="quadrant-setting-card">
+              <div class="q-setting-row">
+                <span class="q-icon">🌅</span>
+                <div class="q-info"><strong>Morning</strong><small>06:00 AM – 12:00 PM</small></div>
+                <button class="btn-sm">Edit</button>
+              </div>
+              <div class="q-setting-row">
+                <span class="q-icon">☀️</span>
+                <div class="q-info"><strong>Afternoon</strong><small>12:00 PM – 06:00 PM</small></div>
+                <button class="btn-sm">Edit</button>
+              </div>
+              <div class="q-setting-row">
+                <span class="q-icon">🌆</span>
+                <div class="q-info"><strong>Evening</strong><small>06:00 PM – 10:00 PM</small></div>
+                <button class="btn-sm">Edit</button>
+              </div>
+              <div class="q-setting-row">
+                <span class="q-icon">🌙</span>
+                <div class="q-info"><strong>Night</strong><small>10:00 PM – 06:00 AM</small></div>
+                <button class="btn-sm">Edit</button>
+              </div>
+            </div>
+
+            <h3 class="section-heading">Android Installable APKs</h3>
+            <div class="notif-test-card" style="border: 1px solid rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.05);">
+              <h4 style="color: #10b981;">📦 Direct APK Downloads</h4>
+              <p>Generated with JDK 21 & Android 35 SDK. Always built in both variants:</p>
+              <div style="display: flex; gap: 8px; flex-direction: column; margin-top: 10px;">
+                <a href="/apks/remindflow-latest.apk" download class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; padding: 10px; font-size: 13px;">
+                  <span>⬇️</span> Download Production APK (Latest)
+                </a>
+                <a href="/apks/remindflow-latest-debug.apk" download class="btn-sm" style="display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; padding: 9px; font-size: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff;">
+                  <span>🛠️</span> Download Debug APK (Latest)
+                </a>
+                <a href="/apks/0.0.3/remindflow-0.0.3.apk" download style="font-size: 11px; color: var(--text-muted); text-align: center; text-decoration: underline; margin-top: 4px;">
+                  Download version specific build (v0.0.3)
+                </a>
+              </div>
+            </div>
+
+            <h3 class="section-heading">Notification Action Simulation</h3>
+            <div class="notif-test-card">
+              <h4>🔔 Test Actionable Alarm Notification</h4>
+              <p>Simulate an Android notification with instant [Done], [Snooze], and [Skip] buttons.</p>
+              <button class="btn-primary" onclick="triggerTestNotificationBanner()">Trigger Notification</button>
+            </div>
+
+            <div style="height: 60px;"></div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Fullscreen Alarm Screen Simulation Overlay -->
+      <div id="fullscreenAlarmModal" class="fullscreen-alarm-overlay">
+        <div class="alarm-pulse-ring"></div>
+        <div class="alarm-clock-display" id="alarmClockTime">07:30 <span style="font-size:22px;">PM</span></div>
+        <div class="alarm-status-pill">🔊 PERSISTENT ALARM RINGING</div>
+
+        <div class="alarm-center-card">
+          <div class="alarm-med-icon">💊</div>
+          <h2 class="alarm-med-title" id="alarmModalTitle">Omega-3 & Magnesium</h2>
+          <p class="alarm-med-notes" id="alarmModalNotes">Take 2 capsules with dinner • 4 capsules left</p>
+        </div>
+
+        <div class="alarm-bottom-actions">
+          <button class="btn-alarm-snooze" onclick="dismissFullscreenAlarm('SNOOZE')">⏱ Snooze 10m</button>
+          <button class="btn-alarm-done" onclick="dismissFullscreenAlarm('DONE')">✓ Take Now</button>
+        </div>
+      </div>
+
+      <!-- Actionable Notification Banner Simulation Overlay -->
+      <div id="simulatedNotification" class="notification-banner">
+        <div class="notif-header">
+          <span class="notif-app">REMIND FLOW • NOW</span>
+        </div>
+        <div class="notif-body">
+          <strong id="notifTitle">Vitamin D3 & Calcium</strong>
+          <p id="notifNotes">Take 1 capsule with water • Health & Meds</p>
+        </div>
+        <div class="notif-actions">
+          <button class="btn-notif-action done" onclick="notifActionDone()">✓ Done</button>
+          <button class="btn-notif-action snooze" onclick="notifActionSnooze()">⏱ Snooze 15m</button>
+          <button class="btn-notif-action skip" onclick="notifActionSkip()">✕ Skip</button>
+        </div>
+      </div>
+
+      <!-- Snooze / Skip Bottom Sheet Modal -->
+      <div id="snoozeBottomSheet" class="bottom-sheet-overlay">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <h3 id="sheetTitle">Snooze or Skip Routine</h3>
+          <p id="sheetSubtext">Select an action for this reminder</p>
+
+          <div class="sheet-options-grid">
+            <button class="sheet-btn" onclick="applySnooze(10)">
+              <span>⏱ 10 Mins</span>
+            </button>
+            <button class="sheet-btn" onclick="applySnooze(30)">
+              <span>⏱ 30 Mins</span>
+            </button>
+            <button class="sheet-btn" onclick="applySnooze(60)">
+              <span>⏱ 1 Hour</span>
+            </button>
+            <button class="sheet-btn" onclick="applySnooze(120)">
+              <span>⏱ 2 Hours</span>
+            </button>
+          </div>
+
+          <button class="sheet-skip-btn" onclick="applySkip()">
+            <span>✕ Skip for Today</span>
+            <small>Won't notify again until next scheduled time</small>
+          </button>
+
+          <button class="sheet-cancel-btn" onclick="closeSnoozeSheet()">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Floating Action Button to Add -->
+      <button class="fab-btn" id="fabAdd" onclick="switchScreen('screenAddEdit')">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
+
+      <!-- Bottom Android Navigation Bar (Home, Alerts, Supplies, Stats, Settings) -->
+      <div class="bottom-nav-bar">
+        <button class="nav-tab active" id="tabHome" onclick="switchScreen('screenDashboard')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Timeline</span>
+        </button>
+        <button class="nav-tab" id="tabNotifications" onclick="switchScreen('screenNotifications')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span>Alerts</span>
+        </button>
+        <button class="nav-tab" id="tabInventory" onclick="switchScreen('screenInventory')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path></svg>
+          <span>Supplies</span>
+        </button>
+        <button class="nav-tab" id="tabAnalytics" onclick="switchScreen('screenAnalytics')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+          <span>Stats</span>
+        </button>
+        <button class="nav-tab" id="tabSettings" onclick="switchScreen('screenSettings')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Settings</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

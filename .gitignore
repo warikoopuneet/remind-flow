@@ -1,0 +1,29 @@
+# Keystore & Signing Credentials (CRITICAL: Never commit to version control)
+*.keystore
+*.jks
+release.keystore
+app/release.keystore
+
+# Gradle & Build Artifacts
+.gradle/
+build/
+app/build/
+*.apk
+*.aab
+
+# Local SDK and environment configurations
+local.properties
+.env
+.env.local
+
+# IDE & Editor caches
+.idea/
+*.iml
+.navigation/
+captures/
+.externalNativeBuild
+.cxx/
+
+# OS specific files
+.DS_Store
+Thumbs.db

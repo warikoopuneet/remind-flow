@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RemindFlow</string>
+    <string name="quadrant_morning">Morning</string>
+    <string name="quadrant_afternoon">Afternoon</string>
+    <string name="quadrant_evening">Evening</string>
+    <string name="quadrant_night">Night</string>
+    
+    <string name="action_done">Done</string>
+    <string name="action_snooze">Snooze</string>
+    <string name="action_skip">Skip</string>
+    
+    <string name="notification_channel_name">Reminders</string>
+    <string name="notification_channel_desc">Timely alerts for your scheduled routines and tasks</string>
+</resources>
